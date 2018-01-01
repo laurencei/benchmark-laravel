@@ -11,18 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'Controller@helloworld');
+Route::get('/user/1', 'Controller@show');
 
-Route::get('/user/1', function () {
-    return \App\User::find(1);
-});
-
-Route::get('/user/post', function () {
-    $user = \App\User::create(['name' => str_random(30),
-                               'email' => str_random(30).'@test.com',
-                               'password' => str_random(30)]);
-
-    return $user;
-});
+// This is a "get" route to make using ab testing easier. It simulates a "post".
+Route::get('/user/post', 'Controller@interact');
