@@ -28,11 +28,13 @@ class Controller extends BaseController
     // We create and delete the record to keep DB size consistent during test.
     public function interact()
     {
-        $post = \App\Post::create(['item' => str_random(30)]);
+        $post = new \App\Post;
+        $post->item = 'Example6';
+        $post->save();
 
         $post->delete();
 
-        return reponse('ok');
+        return ['response' => 'ok'];
     }
 
 }
